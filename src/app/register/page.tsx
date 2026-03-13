@@ -186,7 +186,7 @@ export default function RegisterPage() {
                   checked={role === "FREELANCER"}
                   onChange={() => setRole("FREELANCER")}
                 />
-                Želim da nudim usluge
+                Želim da nudim usluge kao samostalac
               </label>
 
               <label className="flex items-center gap-2">
@@ -195,7 +195,7 @@ export default function RegisterPage() {
                   checked={role === "COMPANY"}
                   onChange={() => setRole("COMPANY")}
                 />
-                Želim kao preduzeće
+                Želim da nudim usluge kao preduzeće
               </label>
             </div>
 

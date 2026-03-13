@@ -71,10 +71,11 @@ export async function POST(req: Request) {
       availabilities, 
     } = body;
 
-    const profile = await db.query.profiles.findFirst({
-      where: (profiles, { eq }) =>
-        eq(profiles.userId, Number(user.sub)),
-    });
+    
+    const [profile] = await db
+    .select()
+    .from(profiles)
+    .where(eq(profiles.userId, Number(user.sub)));
 
     if (!profile) {
       return NextResponse.json(

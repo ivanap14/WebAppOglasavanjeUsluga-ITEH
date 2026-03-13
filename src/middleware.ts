@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
-import { PATCH } from "./app/api/employees/route";
 
 const AUTH_COOKIE = "auth";
 
@@ -191,8 +190,20 @@ export async function middleware(req: NextRequest) {
        FRONTEND PROVERA
     ========================== */
 
+    // if (role === "USER") {
+    //   return NextResponse.next();
+    // }
     if (role === "USER") {
-      return NextResponse.next();
+      const isAllowed = publicPages.some(
+        (route) =>
+          pathname === route || pathname.startsWith(route + "/")
+      );
+
+      if (!isAllowed) {
+        return NextResponse.redirect(
+          new URL("/", req.url)
+        );
+      }
     }
 
     if (role === "FREELANCER") {

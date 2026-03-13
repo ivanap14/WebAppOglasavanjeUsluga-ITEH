@@ -78,7 +78,12 @@ export default function NavbarDashboard() {
                           window.scrollTo({ top: 0, behavior: "smooth" });
                           //router.push('/dashboard');
                           }}>Profil</Link>
-                <a href="/reservations" className="hover:text-gray-300">Rezervacije</a>    
+                <a href="/reservations" className="hover:text-gray-300">Rezervacije</a>
+                { 
+                status === "authenticated" && user.role === "COMPANY" 
+                ? (<a href="/employees" className="hover:text-gray-300">Radnici</a>)
+                :(<p></p>)
+                }    
         </div> 
       </nav>  
     
